@@ -1,5 +1,5 @@
 [project]
-name = "BitbuckedManager"
+name = "bbmanager"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [
@@ -12,9 +12,15 @@ license = {text = "MIT"}
 
 
 [tool.pdm]
-distribution = false
+distribution = true
 
 [dependency-groups]
 dev = [
     "pytest>=8.3.4",
 ]
+
+[project.scripts]
+list-projects = "bbmanager.cli_functions:list_projects"
+create-project = "bbmanager.cli_functions:create_project"
+list-repositories = "bbmanager.cli_functions:list_repositories"
+create-repository = "bbmanager.cli_functions:create_repository"
