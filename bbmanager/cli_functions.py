@@ -1,6 +1,7 @@
 import click
 from bbmanager.api_client.projects_manage import Projects
 from bbmanager.api_client.repositories_manage import Repositories
+from bbmanager.api_client.branch_manage import Branch
 import asyncio
 
 
@@ -66,3 +67,31 @@ def create_repository(workspace_name, repository_name, repository_key):
 
     repositories = asyncio.run(create_repository())
     click.echo(repositories)
+
+
+@click.command()
+@click.option("--repository_name", help="Name of the project")
+def list_branch_restrictions(repository_name):
+    async def get_branch_restrictions():
+        branchs = Branch()
+        response = await branchs.get_branch_restrictions(repository_name)
+        await branchs.close()
+        return response
+
+    repositories = asyncio.run(get_branch_restrictions())
+    click.echo(repositories)
+
+
+@click.command()
+@click.option("--repository_name", help="Name of repository")
+@click.option("--user", help="User selected")
+@click.option("--branch", help="Name of repository")
+def remove_pr_restriction(repository_name, user, branch):
+    async def remove_pr_restriction():
+        branchs = Branch()
+        response = await branchs.remove_pr_restriction(repository_name, user, branch)
+        await branchs.close()
+        return response
+
+    branchs = asyncio.run(remove_pr_restriction())
+    click.echo(branchs)

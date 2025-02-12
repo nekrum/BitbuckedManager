@@ -24,3 +24,6 @@ list-projects = "bbmanager.cli_functions:list_projects"
 create-project = "bbmanager.cli_functions:create_project"
 list-repositories = "bbmanager.cli_functions:list_repositories"
 create-repository = "bbmanager.cli_functions:create_repository"
+list-branch-restrictions = "bbmanager.cli_functions:list_branch_restrictions"
+remove-pr-restriction = "bbmanager.cli_functions:remove_pr_restriction"
+

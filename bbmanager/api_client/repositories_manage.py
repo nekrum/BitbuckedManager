@@ -25,7 +25,6 @@ class Repositories(BitBucketClient):
         if workspace_name is None:
             workspace_name = self.workspace_name
         url = f"{self.base_url}repositories/{workspace_name}/{repository_name}"
-        project_data = {"project": {"key": repository_key}}
         await self.ensure_valid_token()
         logger.debug(f"Gettin repositories from {url}")
         response = await self.client.post(url=url)
